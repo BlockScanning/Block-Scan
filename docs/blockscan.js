@@ -48,6 +48,45 @@ function runScanLoop() {
 }
 
 const scanButton = document.getElementById('scan-button');
+scanButton.style.display = 'none';
+
+// Create and add loading UI
+const loadingUI = document.createElement('div');
+loadingUI.style.textAlign = 'center';
+loadingUI.style.padding = '20px';
+loadingUI.style.position = 'fixed';
+loadingUI.style.top = '50%';
+loadingUI.style.left = '50%';
+loadingUI.style.transform = 'translate(-50%, -50%)';
+loadingUI.style.backgroundColor = 'white';
+loadingUI.style.zIndex = '9999';
+loadingUI.style.width = '80%';
+loadingUI.style.maxWidth = '500px';
+loadingUI.style.boxShadow = '0 0 10px rgba(0,0,0,0.2)';
+loadingUI.style.borderRadius = '10px';
+
+const loadingText = document.createElement('div');
+loadingText.textContent = 'Loading data, this may take a few seconds...';
+loadingText.style.fontSize = '24px';
+loadingText.style.marginBottom = '20px';
+loadingText.style.color = '#000';
+loadingText.style.fontWeight = 'bold';
+
+const spinner = document.createElement('div');
+spinner.className = 'spinner-border text-primary';
+spinner.style.width = '3rem';
+spinner.style.height = '3rem';
+spinner.style.marginBottom = '20px';
+
+const orientationText = document.createElement('div');
+orientationText.textContent = 'Remember to hold your phone vertically when scanning.';
+orientationText.style.fontSize = '20px';
+orientationText.style.color = '#666';
+
+loadingUI.appendChild(loadingText);
+loadingUI.appendChild(spinner);
+loadingUI.appendChild(orientationText);
+document.body.appendChild(loadingUI);
 
 // Desktop
 scanButton.addEventListener('mousedown', startScanning);
@@ -117,12 +156,12 @@ async function classifyFrame() {
         // check the value of largest bucket
         // if it is greater than 50, show the popup window and stop scanning
         max_bucket = sorted_buckets[0].bucket;
-        percentage = Math.round(max_bucket / 30 * 100); // convert to percentage
+        percentage = Math.round(max_bucket / 15 * 100); // convert to percentage
         progressBar.setAttribute('aria-valuenow', percentage);
         progressBar.style.width = percentage + "%";
 
 
-        if (max_bucket > 30) {
+        if (max_bucket > 15) {
 
             //hide buttons and video
             scanButton.style.display = "none";
@@ -170,42 +209,43 @@ async function loadCSVData() {
     classData = parsed.data;
 }
 
-function setup() {
+async function setup() {
 
     const p5Main = document.querySelector('main');
     if (p5Main) {
         p5Main.remove();
     }
 
-    const videoContainer = document.getElementById('video-container');
+    try {
+        await Promise.all([
+            loadModel2(),
+            loadCSVData()
+        ]);
+        
+        // Remove loading UI and show scan button once everything is loaded
+        loadingUI.remove();
+        scanButton.style.display = 'block';
+        
+        const videoContainer = document.getElementById('video-container');
+        const constraints = {
+            video: {
+                facingMode: "environment"
+            },
+            audio: false
+        };
 
-    const constraints = {
-        video: {
-            facingMode: "environment"
-        },
-        audio: false
-    };
-    loadModel2();
-    loadCSVData();
-    console.log("csv loaded");
+        video = createCapture(constraints);
+        video.elt.muted = true;
+        video.parent(videoContainer);
+        video.elt.style.objectFit = "cover";
+        video.elt.style.width = "100%";
+        video.elt.style.height = "100%";
 
-    video = createCapture(constraints);
-    video.elt.muted = true;
-
-    video.parent(videoContainer);
-
-    video.elt.onloadeddata = () => {
-        console.log("Video has loaded");
-        if (modelReady) {
-        } else {
-            console.log("Model not ready yet...");
-        }
+    } catch (error) {
+        console.error('Error during setup:', error);
+        loadingText.textContent = 'Error loading resources. Please refresh the page.';
+        spinner.style.display = 'none';
     }
-
-    video.elt.style.objectFit = "cover";
-    video.elt.style.width = "100%";
-    video.elt.style.height = "100%";
-
 }
 
 // Hide the pop-up window when the close button is clicked

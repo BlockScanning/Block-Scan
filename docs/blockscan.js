@@ -261,14 +261,14 @@ wrongButton.addEventListener("click", function() {
     
 
         const image = document.createElement('img');
-        image.src = `images/${classes[entry.index]}.jpeg`;
+        image.src = `compressed_images/${classes[entry.index]}.jpeg`;
 
         image.onerror = function () {
             console.log("Loading as a jpg instead of jpeg");
-            image.src = `images/${classes[entry.index]}.jpg`;
+            image.src = `compressed_images/${classes[entry.index]}.jpg`;
 
             image.onerror = function () {
-                    img.src = 'images/placeholder.jpg'; // Placeholder image if both fail
+                    img.src = 'compressed_images/placeholder.jpg'; // Placeholder image if both fail
                 
             };
 
@@ -335,15 +335,15 @@ img.style.maxWidth = "100%";
 img.style.width = "auto";      
 img.style.objectFit = "contain"; 
 img.style.marginBottom = "20px"; 
-img.src = `images/${predictedClass}.jpeg`;
+img.src = `compressed_images/${predictedClass}.jpeg`;
 wrongButton.style.display = "block";
 
 img.onerror = function () {
     console.log("Loading as a jpg instead of jpeg");
-    img.src = `images/${predictedClass}.jpg`;
+    img.src = `compressed_images/${predictedClass}.jpg`;
 
     img.onerror = function () {
-            img.src = 'images/placeholder.jpg'; // Placeholder image if both fail
+            img.src = 'compressed_images/placeholder.jpg'; // Placeholder image if both fail
 
     };
 };

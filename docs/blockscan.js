@@ -50,7 +50,6 @@ function runScanLoop() {
 const scanButton = document.getElementById('scan-button');
 scanButton.style.display = 'none';
 
-// Create and add loading UI
 const loadingUI = document.createElement('div');
 loadingUI.style.textAlign = 'center';
 loadingUI.style.padding = '20px';
@@ -60,27 +59,27 @@ loadingUI.style.left = '50%';
 loadingUI.style.transform = 'translate(-50%, -50%)';
 loadingUI.style.backgroundColor = 'white';
 loadingUI.style.zIndex = '9999';
-loadingUI.style.width = '80%';
+loadingUI.style.width = '90%';
 loadingUI.style.maxWidth = '500px';
 loadingUI.style.boxShadow = '0 0 10px rgba(0,0,0,0.2)';
 loadingUI.style.borderRadius = '10px';
 
 const loadingText = document.createElement('div');
 loadingText.textContent = 'Loading data, this may take a few seconds...';
-loadingText.style.fontSize = '24px';
+loadingText.style.fontSize = '50px';
 loadingText.style.marginBottom = '20px';
 loadingText.style.color = '#000';
 loadingText.style.fontWeight = 'bold';
 
 const spinner = document.createElement('div');
 spinner.className = 'spinner-border text-primary';
-spinner.style.width = '3rem';
-spinner.style.height = '3rem';
+spinner.style.width = '7rem';
+spinner.style.height = '7rem';
 spinner.style.marginBottom = '20px';
 
 const orientationText = document.createElement('div');
 orientationText.textContent = 'Remember to hold your phone vertically when scanning.';
-orientationText.style.fontSize = '20px';
+orientationText.style.fontSize = '40px';
 orientationText.style.color = '#666';
 
 loadingUI.appendChild(loadingText);
@@ -343,6 +342,11 @@ wrongButton.addEventListener("click", function() {
                 listContainer.remove();
             }
             wrongButton.style.display = "block";
+            wrongButton.style.backgroundColor = "#dc3545"; // danger red
+            wrongButton.style.fontSize = "1.5rem";
+            wrongButton.style.marginTop = "0";
+            wrongButton.style.padding = "15px 30px";
+            wrongButton.textContent = "Wrong block? Press here to see similar";
 
             card = document.getElementById("img-card");
             card.style.display = "block";
@@ -377,6 +381,14 @@ img.style.objectFit = "contain";
 img.style.marginBottom = "20px"; 
 img.src = `compressed_images/${predictedClass}.jpeg`;
 wrongButton.style.display = "block";
+wrongButton.style.backgroundColor = "#dc3545"; // Bootstrap danger red
+wrongButton.style.fontSize = "2rem"; // Increased font size
+wrongButton.style.margin = "5"; 
+wrongButton.style.padding = "20px 30px";
+wrongButton.textContent = "Wrong block? Press here to see similar";
+wrongButton.style.width = "100%"; 
+wrongButton.style.position = "sticky"; // Make button stick to image holderr thing
+wrongButton.style.top = "0";
 
 img.onerror = function () {
     console.log("Loading as a jpg instead of jpeg");
@@ -435,5 +447,10 @@ order.forEach((key) => {
         para.style.fontSize = "44px";
         parentElement.appendChild(para);
     }
+});
+
+// Update paragraph margins
+parentElement.querySelectorAll('p').forEach(p => {
+    p.style.marginBottom = '5px';
 });
 }

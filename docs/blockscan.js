@@ -402,9 +402,9 @@ img.onerror = function () {
 
 parentElement.appendChild(img);
 
-const order = ["Title", "Description", "PUBLICATION Info as of April 15, 2025", "page number", "Panel #", "Accession #"];
+const order = ["Title", "Description", "Publication", "page number", "Panel #", "Accession #"];
 const match = classData.find(row => row["Accession #"] === predictedClass);
-console.log("Match: ", match);
+
 if (!match) {
     let filler = "Information coming soon! ";
     console.error("No match found for predicted class:", predictedClass);
@@ -415,7 +415,9 @@ if (!match) {
 
 }
 
+
 order.forEach((key) => {
+
     if (match[key] && key == "Title") {
         const para = document.createElement('p');
         para.innerHTML = `<span style="font-size: 60px; font-weight: bold;">${match[key].replace(/\n/g, '<br>')}</span>`;
@@ -441,11 +443,21 @@ order.forEach((key) => {
         para.style.fontSize = "40px";
         parentElement.appendChild(para);
     }
-    else if (match[key]) {
+    else if (match[key]  && key == "Publication" ) {
+        parentElement.appendChild(document.createElement('br'));
         const para = document.createElement('p');
         para.innerHTML = match[key].replace(/\n/g, '<br>');
         para.style.fontSize = "44px";
+        para.style.fontWeight = "bold";
+        para.style.fontStyle = "italic"
         parentElement.appendChild(para);
+    }
+    else if (match[key] && key == "Description") {
+        const para = document.createElement('p');
+        para.innerHTML = match[key].replace(/\n/g, '<br>') + '<br>';
+        para.style.fontSize = "44px";
+        parentElement.appendChild(para);
+        
     }
 });
 

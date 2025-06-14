@@ -80,6 +80,8 @@ body {
   border-radius: 2%;
   display: flex;
   flex-direction: column;
+  max-height: 95vh; /* Already set, just confirming */
+  padding-bottom: 100px; /* Prevent content hiding under sticky button */
 
 }
 
@@ -270,20 +272,18 @@ body {
   
  /* right: 5%; */
  /* transform: translateX(-50%); */
- background-color: #413efc;
- color: rgb(255, 255, 255);
- /* border: none; */
- /* border-radius: 15%;  */
- width: 80%;       
- height: 5%;      
- font-size: clamp(16px, 4vw, 32px);
- /* cursor: pointer;
- user-select: none;
- outline: none; */
+ position: sticky;
+ bottom: 0;
+ background-color: #dc3545;
+ color: white;
+ width: 100%;
+ height: 8%;
+ /*font-size: clamp(28px, 6vw, 48px); */
+ font-size: 35px;
+ padding: 20px 0;
  text-align: center;
  display: none;
- /* line-height: 50px;  */
- margin: 3% auto; /* Center the button horizontally */
+ z-index: 1000;
 }
 
 

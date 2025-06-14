@@ -343,7 +343,7 @@ wrongButton.addEventListener("click", function() {
             }
             wrongButton.style.display = "block";
             wrongButton.style.backgroundColor = "#dc3545"; // danger red
-            wrongButton.style.fontSize = "1.5rem";
+            wrongButton.style.fontSize = "3rem";
             wrongButton.style.marginTop = "0";
             wrongButton.style.padding = "15px 30px";
             wrongButton.textContent = "Wrong block? Press here to see similar";
@@ -382,7 +382,7 @@ img.style.marginBottom = "20px";
 img.src = `compressed_images/${predictedClass}.jpeg`;
 wrongButton.style.display = "block";
 wrongButton.style.backgroundColor = "#dc3545"; // Bootstrap danger red
-wrongButton.style.fontSize = "2rem"; // Increased font size
+wrongButton.style.fontSize = "3rem"; // Increased font size
 wrongButton.style.margin = "5"; 
 wrongButton.style.padding = "20px 30px";
 wrongButton.textContent = "Wrong block? Press here to see similar";

@@ -80,8 +80,8 @@ body {
   border-radius: 2%;
   display: flex;
   flex-direction: column;
-  max-height: 95vh; /* Already set, just confirming */
-  padding-bottom: 100px; /* Prevent content hiding under sticky button */
+  max-height: 95vh; 
+  padding-bottom: 20px; 
 
 }
 
@@ -95,7 +95,7 @@ body {
   margin-top: 5%; 
   opacity: 1;
   transform: scaleX(-1);
-  object-fit: contain; /* Don't stretch, fit inside nicely */
+  object-fit: contain;
   /*position: relative;
   /*left: 25%; */
 }
@@ -122,13 +122,13 @@ body {
 
 
 #close-button {
-  position: absolute; /* Position relative to the popup window */
-  top: 10px;          /* Distance from the top of the popup window */
-  right: 10px;        /* Distance from the right of the popup window */
-  width: 50px;        /* Adjust size if needed */
+  position: absolute; 
+  top: 10px;          
+  right: 10px;        
+  width: 50px;        
   height: 50px;
-  font-size: 80px;    /* Adjust font size if needed */
-  border-radius: 50%; /* Optional: Make it circular */
+  font-size: 80px;    
+  border-radius: 50%; 
   color: white;
   cursor: pointer;
   display: flex;
@@ -153,7 +153,7 @@ body {
   height: 2000px;
   width: 100%;
   background-color: #d8e3ff00 !important;
-  /* border-radius: 0 !important; */
+  
 }
 
 
@@ -280,7 +280,7 @@ body {
  height: 8%;
  /*font-size: clamp(28px, 6vw, 48px); */
  font-size: 35px;
- padding: 20px 0;
+ padding: 5px 0;
  text-align: center;
  display: none;
  z-index: 1000;

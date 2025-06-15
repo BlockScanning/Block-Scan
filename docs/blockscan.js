@@ -380,6 +380,7 @@ img.style.width = "auto";
 img.style.objectFit = "contain"; 
 img.style.marginBottom = "20px"; 
 img.src = `compressed_images/${predictedClass}.jpeg`;
+
 wrongButton.style.display = "block";
 wrongButton.style.backgroundColor = "#dc3545"; // Bootstrap danger red
 wrongButton.style.fontSize = "3rem"; // Increased font size
@@ -389,6 +390,21 @@ wrongButton.textContent = "Wrong block? Press here to see similar";
 wrongButton.style.width = "100%"; 
 wrongButton.style.position = "sticky"; // Make button stick to image holderr thing
 wrongButton.style.top = "0";
+
+const addButton = document.createElement('button');
+addButton.textContent = "Add Info";
+addButton.className = "button-17";
+addButton.style.marginTop = "30px";
+addButton.style.fontSize = "40px";
+addButton.style.width = "100%";
+addButton.style.backgroundColor = "#cccccc";
+
+addButton.onclick = () => {
+    const formUrl = `https://docs.google.com/forms/d/e/1FAIpQLSfofCB-B9nvCXV9n1G831on1hoYyhK4d0QZ6XM1AmpEZsdA0A/viewform?usp=pp_url&entry.226119337=${encodeURIComponent(predictedClass)}`;
+    window.location.href = formUrl;
+};
+
+
 
 img.onerror = function () {
     console.log("Loading as a jpg instead of jpeg");
@@ -460,6 +476,8 @@ order.forEach((key) => {
         
     }
 });
+
+parentElement.appendChild(addButton);
 
 // Update paragraph margins
 parentElement.querySelectorAll('p').forEach(p => {

@@ -400,7 +400,7 @@ addButton.style.width = "100%";
 addButton.style.backgroundColor = "#cccccc";
 
 addButton.onclick = () => {
-    const formUrl = `https://docs.google.com/forms/d/e/1FAIpQLSfofCB-B9nvCXV9n1G831on1hoYyhK4d0QZ6XM1AmpEZsdA0A/viewform?usp=pp_url&entry.226119337=${encodeURIComponent(predictedClass)}`;
+    const formUrl = `https://docs.google.com/forms/d/e/1FAIpQLScmOdkQ3qvV0JIzwBE-SFw8q2G2ZpMoXnBse5vj6X3y3Jccxg/viewform?usp=pp_url&entry.123456789=${encodeURIComponent(predictedClass)}`;
     window.location.href = formUrl;
 };
 
